@@ -22,6 +22,8 @@
 
 The module is a thin wrapper for the [Mailchimp Transactional API](https://www.npmjs.com/package/@mailchimp/mailchimp_transactional).
 
+<br/>
+
 ## Installation
 
 ```bash

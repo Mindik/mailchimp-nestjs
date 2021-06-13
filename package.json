@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "Dynamic module mailchimp_transactional for nestjs",
   "author": "Anton Starenkov",
+  "homepage": "https://github.com/Mindik/mailchimp-nestjs#readme",
   "license": "MIT",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mindik/mailchimp-nestjs"
+  },
   "scripts": {
     "start:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/main.js\"",
     "build": "tsc",
@@ -16,9 +21,7 @@
     "test:cov": "jest --coverage",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
-  "keywords": [
-    "nestjs"
-  ],
+  "keywords": ["nestjs", "mailchimp"],
   "publishConfig": {
     "access": "public"
   },
