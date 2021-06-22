@@ -64,12 +64,14 @@ import { MailchimpModule } from '@mindik/mailchimp-nestjs';
 @Module({
   imports: [
     MailchimpModule.forRootAsync({
+      imports: [/* ConfigModule */]
       /* 
         useExisting 
         useFactory 
         useClass 
       */
       useFactory: async () => /* API_KEY */, 
+      inject: [/* ConfigService */]
     }),
   ],
   controllers: [AppController],
@@ -92,9 +94,6 @@ export class AppService {
   constructor(
     /*
       or 
-      private readonly mail: MailchimpService
-
-      or 
       @Inject(MAILCHIMP_TOKEN) private readonly mail
     */
     @InjectMailchimp() private readonly mail
@@ -107,29 +106,19 @@ export class AppService {
 }
 ```
 
-You can use both the standard service injection syntax. 
-
-```TypeScript
-private readonly mail: MailchimpService
-```
-
-Or use a decorator
-
+You can use a decorator
 
 ```TypeScript
 @InjectMailchimp() private readonly mail
 ```
 
-
  that is an alias for a longer entry
-
  
 ```TypeScript
 @Inject(MAILCHIMP_TOKEN) private readonly mail
 ```
 
 <br/>
-
 Further use in the application is no different from other modules...
 
 Add the export to the decorator @Module()
@@ -166,9 +155,7 @@ import { SomeService } from './some.service';
 export class SomeModule {}
 ```
 
-
 Use in your some service
-
 
 ```TypeScript
 // some.service.ts

@@ -1,11 +1,15 @@
-import { Module, DynamicModule, Provider, Global } from '@nestjs/common';
+import { DynamicModule, Global, Module, Provider } from '@nestjs/common';
+import { MAILCHIMP_OPTIONS, MAILCHIMP_TOKEN } from './mailchimp.constants';
+import {
+  MailchimpAsyncOptions,
+  MailchimpOptions,
+  MailchimpOptionsFactory,
+} from './mailchimp.interfaces';
 import { MailchimpService } from './mailchimp.service';
-import { MailchimpOptions, MailchimpAsyncOptions, MailchimpOptionsFactory } from './mailchimp.interfaces';
-import { MAILCHIMP_TOKEN, MAILCHIMP_OPTIONS } from './mailchimp.constants';
 
 export const connectionFactory = {
   provide: MAILCHIMP_TOKEN,
-  useFactory: async (mailchimpService) => mailchimpService.instance(),
+  useFactory: (mailchimpService) => mailchimpService.instance(),
   inject: [MailchimpService],
 };
 
@@ -21,12 +25,7 @@ export class MailchimpModule {
   public static forRoot(options: MailchimpOptions): DynamicModule {
     return {
       module: MailchimpModule,
-      providers: [
-        {
-          provide: MAILCHIMP_OPTIONS,
-          useValue: options,
-        },
-      ],
+      providers: [{ provide: MAILCHIMP_OPTIONS, useValue: options }],
     };
   }
 
@@ -37,6 +36,7 @@ export class MailchimpModule {
   public static forRootAsync(options: MailchimpAsyncOptions): DynamicModule {
     return {
       module: MailchimpModule,
+      imports: options.imports ?? [],
       providers: [...this.createProviders(options)],
     };
   }
@@ -55,7 +55,9 @@ export class MailchimpModule {
     ];
   }
 
-  private static createOptionsProvider(options: MailchimpAsyncOptions): Provider {
+  private static createOptionsProvider(
+    options: MailchimpAsyncOptions,
+  ): Provider {
     if (options.useFactory) {
       return {
         provide: MAILCHIMP_OPTIONS,
@@ -64,10 +66,10 @@ export class MailchimpModule {
       };
     }
 
-    // For useExisting...
     return {
       provide: MAILCHIMP_OPTIONS,
-      useFactory: async (optionsFactory: MailchimpOptionsFactory) => await optionsFactory.createMailchimpOptions(),
+      useFactory: async (optionsFactory: MailchimpOptionsFactory) =>
+        await optionsFactory.createMailchimpOptions(),
       inject: [options.useExisting || options.useClass],
     };
   }
