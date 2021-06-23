@@ -87,9 +87,10 @@ describe('Mailchimp forRootAsync imports ConfigModules', () => {
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [
+        ConfigModule.forRoot(),
         MailchimpModule.forRootAsync({
           imports: [ConfigModule],
-          useFactory: (config: ConfigService) => config.get('API_KEY') || null,
+          useFactory: (config: ConfigService) => config.get('API_KEY'),
           inject: [ConfigService],
         }),
       ],
