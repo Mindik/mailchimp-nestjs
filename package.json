@@ -29,7 +29,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@nestjs/common": "^8.x || ^9.x"
+    "@nestjs/common": "^8.x || ^9.x || ^10.0"
   },
   "dependencies": {
     "@mailchimp/mailchimp_transactional": "^1.0.59"
