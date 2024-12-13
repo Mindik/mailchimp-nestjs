@@ -1,0 +1,20 @@
+name: Publish NPM
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  publish:
+    if: ${{ github.ref == 'refs/heads/main' && github.actor == github.repository_owner}}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run test
+      - run: npm run build
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}

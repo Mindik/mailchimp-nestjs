@@ -10,7 +10,7 @@
 <br/>
 <div align="center">
 
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg)](https://github.com/Mindik/mailchimp-nestjs/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Mindik/mailchimp-nestjs/blob/main/LICENSE)
 [![Built with NestJS](https://img.shields.io/badge/built%20with-NestJs-red.svg)](https://nestjs.com)
 [![Built with @nestjsplus/dyn-schematics](https://img.shields.io/badge/Built%20with-%40nestjsplus%2Fdyn--schematics-brightgreen)](https://github.com/nestjsplus/dyn-schematics)
 
