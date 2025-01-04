@@ -5,7 +5,6 @@
   "author": "Anton Starenkov",
   "homepage": "https://github.com/Mindik/mailchimp-nestjs#readme",
   "license": "MIT",
-  "type": "module",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
