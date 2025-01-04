@@ -1,11 +1,10 @@
 {
   "name": "@mindik/mailchimp-nestjs",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Dynamic module mailchimp_transactional for nestjs",
   "author": "Anton Starenkov",
   "homepage": "https://github.com/Mindik/mailchimp-nestjs#readme",
   "license": "MIT",
-  "type": "module",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
